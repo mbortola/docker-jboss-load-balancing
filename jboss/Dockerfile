@@ -1,10 +1,4 @@
-# Steps taken to create this image
-# docker build --rm -t jboss/jboss_eap:6.3.0  .
-# docker run -p 9990:9990 -p 9999:9999 -p 8080:8080 -it jboss/jboss_eap:6.3.0
-#
-# Get required ZIP file from: https://access.redhat.com/jbossnetwork/restricted/softwareDownload.html?softwareId=32483&product=appplatform
-#
-#
+
 FROM jboss/base:latest
 
 # User root user to install software
