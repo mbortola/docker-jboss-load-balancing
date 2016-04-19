@@ -24,6 +24,6 @@ RUN usermod -U www-data && chsh -s /bin/bash www-data && chmod +x /opt/startup.s
 ENTRYPOINT /opt/startup.sh
 
 # To loadbalance add stuff like
-#<VirtualHost yyi9343.local:80>
+#<VirtualHost *:80>
 #       JkMount /webapp* loadbalancer
 
