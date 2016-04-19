@@ -1,7 +1,7 @@
 # Use the centos 6.7 base image
 FROM ubuntu:latest
 
-MAINTAINER Michele Bortolato <michele.bortolato@infocert.it>
+MAINTAINER Michele Bortolato <michele.bortol@gmail.com>
 
 # Install Java.
 RUN \
