@@ -1,5 +1,4 @@
-# docker-jboss-load-balancong
-docker-jboss-load-balancing
+# docker-jboss-load-balancing
 
 ## Ingredients:
 
