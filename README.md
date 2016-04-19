@@ -11,7 +11,7 @@
   * eventually patched 
 
 ## Description
-This project use docker-compose to orchestrate 3 container: 1 with apache2 and 2 (but it coul easily grow) with jboss eap (i tested it with a 6.4.6 eap). 
+This project use docker-compose to orchestrate 3 container: 1 with apache2 and 2 (but you could easily increase) with jboss eap (i tested it with a 6.4.6 eap). 
 
 ## Steps
 
@@ -21,7 +21,7 @@ This project use docker-compose to orchestrate 3 container: 1 with apache2 and 2
  
 ### Other things to do
 
-every container has ist launcher.sh, chech it out to match you purposes
+every container has its launcher.sh, chech it out to match you purposes
 
 
 ## How can i load balance the thing?
@@ -32,7 +32,7 @@ Let's suppose that you have a testapp.war, you put into your containers and it e
 
 or 
 
-> curl second.node:8080/testapp/my/path
+> curl second.node:8180/testapp/my/path 
 
 
 for a load balance edit */etc/apache2/sites-enabled/000-default.conf* with
