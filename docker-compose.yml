@@ -1,0 +1,29 @@
+version: '2'
+services:
+  apache:
+    build: apache2
+    ports:
+      - 80:80
+    depends_on:
+      - node-1
+      - node-2
+    links:
+      - node-1:first.node
+      - node-2:second.node
+    #entrypoint: /opt/startup.sh
+  node-1:
+    image: jboss:latest
+    ports:
+      - 8080:8080
+      - 9990:9990
+    environment:
+      - NODE_NAME=node1
+    #entrypoint: /home/jboss/EAP-6.4.0/jboss-eap-6.4/bin/standalone.sh
+  node-2:
+    image: jboss:latest
+    ports:
+      - 8081:8080
+      - 9991:9990
+    environment:
+      - NODE_NAME=node2
+    #entrypoint: /home/jboss/EAP-6.4.0/jboss-eap-6.4/bin/standalone.sh
