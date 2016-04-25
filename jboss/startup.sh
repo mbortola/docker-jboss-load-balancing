@@ -1,5 +1,6 @@
 #/bin/sh
 
+keytool -import -trustcacerts -file /etc/ssl/extras/apache.crt -alias ssl-web-server -keystore $JAVA_HOME/jre/lib/security/cacerts -keypass changeit
 
 echo "Node name: $NODE_NAME"
 

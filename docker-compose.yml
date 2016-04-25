@@ -1,29 +1,60 @@
 version: '2'
 services:
   apache:
+    container_name: web-server
     build: apache2
     ports:
-      - 80:80
+      - 443:443
     depends_on:
       - node-1
       - node-2
     links:
       - node-1:first.node
       - node-2:second.node
-    #entrypoint: /opt/startup.sh
+    extra_hosts:
+      - "dev.local.it:127.0.0.1"
+    environment:
+      - MY_DOMAIN=domain.local.it
+    volumes_from:
+      - shared_volume
+    entrypoint: /opt/startup.sh
+
+
   node-1:
+    container_name: jb-node-1
     image: jboss:latest
+    links:
+      - shared_volume
     ports:
       - 8080:8080
       - 9990:9990
     environment:
       - NODE_NAME=node1
-    #entrypoint: /home/jboss/EAP-6.4.0/jboss-eap-6.4/bin/standalone.sh
+    volumes_from:
+      - shared_volume
+    entrypoint: /home/jboss/EAP-6.4.0/jboss-eap-6.4/bin/standalone.sh
+
+
   node-2:
+    container_name: jb-node-2
     image: jboss:latest
+    links:
+      - shared_volume
     ports:
       - 8081:8080
       - 9991:9990
     environment:
       - NODE_NAME=node2
-    #entrypoint: /home/jboss/EAP-6.4.0/jboss-eap-6.4/bin/standalone.sh
+    volumes_from:
+      - shared_volume
+    entrypoint: /home/jboss/EAP-6.4.0/jboss-eap-6.4/bin/standalone.sh
+
+
+  shared_volume:
+    container_name: shared_volume
+    image: busybox
+    volumes:
+      - /etc/ssl/extras
+      - /opt/xxxx
+      - /var/opt/xxxx
+      - /nas_int/

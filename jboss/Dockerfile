@@ -32,7 +32,5 @@ VOLUME ${EAP_HOME}/standalone/logs
 
 EXPOSE 9990 9999 8080 8787
 
-#USER jboss
-
-ENTRYPOINT "$INSTALLDIR/startup.sh"
+#ENTRYPOINT "$INSTALLDIR/startup.sh"
 #CMD []

@@ -15,15 +15,11 @@ RUN \
 
 # Define commonly used JAVA_HOME variable
 ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
-
+RUN echo
 ADD files/workers.properties /etc/libapache2-mod-jk/workers.properties
 ADD files/startup.sh /opt/
+ADD files/local-ssl.conf /opt/local-ssl.conf.orig
 
 RUN usermod -U www-data && chsh -s /bin/bash www-data && chmod +x /opt/startup.sh
 
-ENTRYPOINT /opt/startup.sh
-
-# To loadbalance add stuff like
-#<VirtualHost *:80>
-#       JkMount /webapp* loadbalancer
-
+#ENTRYPOINT /opt/startup.sh
