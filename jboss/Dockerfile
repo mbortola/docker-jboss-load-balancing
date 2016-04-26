@@ -17,11 +17,12 @@ ENV EAP_HOME $INSTALLDIR/jboss-eap-6.4
 
 ADD distribution $INSTALLDIR/distribution
 ADD distribution-patches $INSTALLDIR/distribution-patches
-ADD startup.sh $INSTALLDIR
+ADD startup.sh /opt
+ADD base-startup.sh /opt
 
 RUN unzip $INSTALLDIR/distribution/jboss-eap-6.4.0.zip  -d $INSTALLDIR && \
     $INSTALLDIR/jboss-eap-6.4/bin/jboss-cli.sh "patch apply $INSTALLDIR/distribution-patches/jboss-eap-6.4.6-patch.zip" && \
-    chmod +x $INSTALLDIR/startup.sh
+    chmod +x /opt/*startup.sh
 
 # Add default admin user
 RUN ${EAP_HOME}/bin/add-user.sh admin admin123! --silent
@@ -32,5 +33,7 @@ VOLUME ${EAP_HOME}/standalone/logs
 
 EXPOSE 9990 9999 8080 8787
 
-#ENTRYPOINT "$INSTALLDIR/startup.sh"
+#USER jboss
+
+ENTRYPOINT "/opt/base-startup.sh"
 #CMD []

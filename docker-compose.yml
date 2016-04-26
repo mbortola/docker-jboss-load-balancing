@@ -2,7 +2,8 @@ version: '2'
 services:
   apache:
     container_name: web-server
-    build: apache2
+    #build: apache2
+    image: web-server:latest
     ports:
       - 443:443
     depends_on:
@@ -32,7 +33,7 @@ services:
       - NODE_NAME=node1
     volumes_from:
       - shared_volume
-    entrypoint: /home/jboss/EAP-6.4.0/jboss-eap-6.4/bin/standalone.sh
+    entrypoint: /opt/startup.sh
 
 
   node-2:
@@ -47,7 +48,7 @@ services:
       - NODE_NAME=node2
     volumes_from:
       - shared_volume
-    entrypoint: /home/jboss/EAP-6.4.0/jboss-eap-6.4/bin/standalone.sh
+    entrypoint: /opt/startup.sh
 
 
   shared_volume:
