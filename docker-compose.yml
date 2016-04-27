@@ -15,7 +15,7 @@ services:
     extra_hosts:
       - "dev.local.it:127.0.0.1"
     environment:
-      - MY_DOMAIN=domain.local.it
+      - MY_DOMAIN=docker.domain.it
     volumes_from:
       - shared_volume
     entrypoint: /opt/startup.sh
@@ -55,7 +55,7 @@ services:
     container_name: shared_volume
     image: busybox
     volumes:
-      - /etc/ssl/extras
+      - ./apache2/files/certs:/etc/ssl/extras
       - /opt/xxxx
       - /var/opt/xxxx
       - /nas_int/

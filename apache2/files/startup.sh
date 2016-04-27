@@ -1,8 +1,8 @@
 #!/bin/sh
 #Works only in compose-mode
-echo "Creating certificate.."
-openssl req -x509 -nodes -days 3650 -newkey rsa:2048 -keyout /etc/ssl/extras/apache.key -out /etc/ssl/extras/apache.crt -subj /CN=$MY_DOMAIN
-echo "..certificate created, some seds.."
+#echo "Creating certificate.."
+#openssl req -x509 -nodes -days 3650 -newkey rsa:2048 -keyout /etc/ssl/extras/apache.key -out /etc/ssl/extras/apache.crt -subj /CN=$MY_DOMAIN
+#echo "..certificate created, some seds.."
 #JKLoads
 sed '7 a       JkMount /webapp loadbalancer' /opt/local-ssl.conf.orig >  /etc/apache2/sites-available/local-ssl.conf
 
