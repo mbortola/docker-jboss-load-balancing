@@ -4,16 +4,16 @@ FROM jboss/base:latest
 # User root user to install software
 USER root
 
-RUN yum -y install wget zip unzip curl && cd /opt && wget --no-cookies --no-check-certificate \
-  --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/8u77-b03/jdk-8u77-linux-x64.tar.gz" && \
-  tar xzf jdk-8u77-linux-x64.tar.gz && rm *.gz && \
-  mkdir /usr/java && mv  /opt/jdk1.8.0* /usr/java/jdk1.8.0 && \
-  mkdir /home/jboss/ $INSTALLDIR $INSTALLDIR/distribution $INSTALLDIR/resources
-
 # Set the JAVA_HOME variable to make it clear where Java is located
 ENV JAVA_HOME /usr/java/jdk1.8.0
 ENV INSTALLDIR /home/jboss/EAP-6.4.0
 ENV EAP_HOME $INSTALLDIR/jboss-eap-6.4
+
+RUN yum -y install wget zip unzip curl net-tools && cd /opt && wget --no-cookies --no-check-certificate \
+  --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/8u77-b03/jdk-8u77-linux-x64.tar.gz" && \
+  tar xzf jdk-8u77-linux-x64.tar.gz && rm *.gz && \
+  mkdir /usr/java && mv  /opt/jdk1.8.0* /usr/java/jdk1.8.0 && \
+  mkdir /home/jboss/ $INSTALLDIR $INSTALLDIR/distribution $INSTALLDIR/resources
 
 ADD distribution $INSTALLDIR/distribution
 ADD distribution-patches $INSTALLDIR/distribution-patches
@@ -35,5 +35,5 @@ EXPOSE 9990 9999 8080 8787
 
 #USER jboss
 
-ENTRYPOINT "/opt/base-startup.sh"
+#ENTRYPOINT "/opt/base-startup.sh"
 #CMD []
