@@ -15,7 +15,7 @@ RUN echo
 ADD files/workers.properties /etc/libapache2-mod-jk/workers.properties
 ADD files/startup.sh /opt/
 ADD files/base-startup.sh /opt/
-ADD files/local-ssl.conf.orig /opt/local-ssl.conf.orig
+ADD files/local-ssl.conf /opt/local-ssl.conf
 
 RUN usermod -U www-data && chsh -s /bin/bash www-data && chmod +x /opt/*startup.sh
 
