@@ -10,6 +10,11 @@ echo "Node name: $NODE_NAME: bind-address at $BIND_IP"
 # Start the jboss, run configuration script and tail server.log
 /home/jboss/EAP-6.4.0/jboss-eap-6.4/bin/standalone.sh  --server-config=standalone-ha.xml -b $BIND_IP &
 
-/home/jboss/EAP-6.4.0/jboss-eap-6.4/bin/jboss-cli -c --file=/opt/configure.txt
+sleep 1
+while ! grep -m1 'services are lazy, passive or on-demand' < /home/jboss/EAP-6.4.0/jboss-eap-6.4/standalone/log/server.log ; do
+    sleep 1
+done
 
-fg
+/home/jboss/EAP-6.4.0/jboss-eap-6.4/bin/jboss-cli.sh -c --file=/opt/configure.txt
+
+tail -f /home/jboss/EAP-6.4.0/jboss-eap-6.4/standalone/log/server.log
