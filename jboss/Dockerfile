@@ -19,6 +19,7 @@ ADD distribution $INSTALLDIR/distribution
 ADD distribution-patches $INSTALLDIR/distribution-patches
 ADD startup.sh /opt
 ADD base-startup.sh /opt
+ADD configuration /opt
 
 RUN unzip $INSTALLDIR/distribution/jboss-eap-6.4.0.zip  -d $INSTALLDIR && \
     $INSTALLDIR/jboss-eap-6.4/bin/jboss-cli.sh "patch apply $INSTALLDIR/distribution-patches/jboss-eap-6.4.6-patch.zip" && \
